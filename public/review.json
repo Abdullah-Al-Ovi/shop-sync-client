@@ -1,0 +1,64 @@
+ [
+      {
+        "id": 1,
+        "name": "Alice",
+        "review": "Great system! It has significantly improved our inventory management processes.",
+        "rating": 5
+      },
+      {
+        "id": 2,
+        "name": "Bob",
+        "review": "Easy to use and intuitive interface. The sales summary feature is incredibly helpful.",
+        "rating": 4
+      },
+      {
+        "id": 3,
+        "name": "Charlie",
+        "review": "Efficient product management capabilities. Discounts feature is a game-changer.",
+        "rating": 4
+      },
+      {
+        "id": 4,
+        "name": "David",
+        "review": "Excellent support from the admin team. Resolved technical issues promptly.",
+        "rating": 5
+      },
+      {
+        "id": 5,
+        "name": "Eva",
+        "review": "The subscription feature is beneficial for our growing business. Highly recommended.",
+        "rating": 5
+      },
+      {
+        "id": 6,
+        "name": "Frank",
+        "review": "Good overall experience. The system helped us streamline our sales process.",
+        "rating": 3
+      },
+      {
+        "id": 7,
+        "name": "Grace",
+        "review": "User-friendly platform. Created my shop effortlessly. Impressive sales history insights.",
+        "rating": 4
+      },
+      {
+        "id": 8,
+        "name": "Henry",
+        "review": "Responsive and scalable. Ideal for businesses of all sizes.",
+        "rating": 5
+      },
+      {
+        "id": 9,
+        "name": "Ivy",
+        "review": "The IMS has made our inventory management more organized and efficient.",
+        "rating": 4
+      },
+      {
+        "id": 10,
+        "name": "Jack",
+        "review": "Satisfactory performance. Some additional customization options would be appreciated.",
+        "rating": 3
+      }
+    ]
+  
+  

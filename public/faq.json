@@ -1,0 +1,37 @@
+[
+    {
+      "id": 1,
+      "question": "What is the purpose of the Inventory Management System (IMS)?",
+      "answer": "The IMS is designed to help businesses efficiently manage and track their inventory, streamline processes, and improve overall inventory control."
+    },
+    {
+      "id": 2,
+      "question": "Who can benefit from using the IMS?",
+      "answer": "The IMS is beneficial for businesses of all sizes, particularly those involved in retail, e-commerce, and any industry that requires effective inventory management."
+    },
+    {
+      "id": 3,
+      "question": "What are the different user roles in the IMS?",
+      "answer": "The IMS includes three user roles: System-Admin, Shop-Manager, and Logged-User, each with specific functionalities and permissions."
+    },
+    {
+      "id": 4,
+      "question": "What product management capabilities does the IMS provide?",
+      "answer": "The IMS allows users to add, manage, delete, view, and search for products. Shop managers can efficiently handle various aspects of product management."
+    },
+    {
+      "id": 5,
+      "question": "How can discounts be applied to products?",
+      "answer": "Shop managers can add discounts to all products within their shop, providing promotional pricing options."
+    },
+    {
+      "id": 6,
+      "question": "Is there a subscription feature for increasing product adding limits?",
+      "answer": "Yes, shop managers can make payments through cards to increase their product adding limit, enhancing their inventory management capabilities."
+    },
+    {
+      "id": 7,
+      "question": "How do I create a shop as a Logged-User?",
+      "answer": "Logged-Users can create a shop by following the shop creation process within the system. Each user can create only one shop."
+    }
+  ]
