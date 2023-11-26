@@ -5,12 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 import { authContext } from "../../../Components/AuthProvider/AuthProvider";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+
 
 const SignUp = () => {
     const { createUser, updateUser} = useContext(authContext)
     const [err, setErr] = useState('')
     const navigate = useNavigate()
-    // const axiosPublic = useAxiosPublic()
+    const axiosPublic = useAxiosPublic()
     const {
         register,
         handleSubmit,
@@ -32,23 +34,23 @@ const SignUp = () => {
            
            updateUser(data.name,data.link)
             .then(()=>{
-                navigate('/createStore')
+                
                
-                // reset()
-                // axiosPublic.post('/users',userInfo)
-                // .then(res=>{
-                //     console.log(res.data);
-                //     if(res.data.insertedId){
-                //         Swal.fire({
-                //             position: "top",
-                //             icon: "success",
-                //             title: "Sign up Successfully!",
-                //             showConfirmButton: false,
-                //             timer: 1500
-                //           });
-                //           navigate('/')
-                //     }
-                // })
+                reset()
+                axiosPublic.post('/users',userInfo)
+                .then(res=>{
+                    console.log(res.data);
+                    if(res.data.insertedId){
+                        Swal.fire({
+                            position: "top",
+                            icon: "success",
+                            title: "Sign up Successfully!",
+                            showConfirmButton: false,
+                            timer: 1500
+                          });
+                          navigate('/createStore')
+                    }
+                })
 
             })
             .catch(()=>{

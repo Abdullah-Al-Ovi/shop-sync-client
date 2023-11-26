@@ -3,11 +3,13 @@ import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { authContext } from "../../../Components/AuthProvider/AuthProvider";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 
 const CreateStore = () => {
 
   const {user} = useContext(authContext)
+  const axiosSecure = useAxiosSecure()
 
   const { register, handleSubmit,reset } = useForm();
 
@@ -15,11 +17,25 @@ const CreateStore = () => {
     // console.log(data);
     const shopInfo = {
         shopName : data.shopName,
+        shopInfo: data?.shopInfo,
+        shopLocation: data?.shopLocation,
+        shopLogo: data?.shopLogo,
         ownerEmail : user?.email,
         ownerName : user?.displayName
 
     }
     console.log(shopInfo);
+    axiosSecure.post('/createShop',shopInfo)
+    .then(res=>{
+        console.log(res.data);
+        if(res?.data?.insertedId){
+            axiosSecure.patch(`/users/${user?.email}`)
+            .then(res=>{
+                console.log(res.data);
+            })
+        }
+    })
+
   };
 
   return (

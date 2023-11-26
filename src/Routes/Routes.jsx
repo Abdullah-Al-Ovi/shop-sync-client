@@ -5,6 +5,7 @@ import SignUp from "../Pages/CommonRoutes/SignUp/SignUp";
 import SignIn from "../Pages/CommonRoutes/SignIn/SignIn";
 import WatchDemo from "../Pages/CommonRoutes/WatchDemo/WatchDemo";
 import CreateStore from "../Pages/CommonRoutes/CreateStore/CreateStore";
+import Dashboard from "../Dashboard/Dashboard";
 
 const Routes = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ const Routes = createBrowserRouter([
             }
         ]
         
+    },
+    {
+        path:'/dashboard',
+        element:<Dashboard></Dashboard>
     }
 ])
 

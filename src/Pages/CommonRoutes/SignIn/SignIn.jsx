@@ -5,13 +5,14 @@ import Swal from 'sweetalert2';
 
 
 import { authContext } from '../../../Components/AuthProvider/AuthProvider';
+import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 
 const SignIn = () => {
     const { googleSignIn, signInUser } = useContext(authContext)
     const [err, setErr] = useState('')
     const location = useLocation()
     const navigate = useNavigate()
-    // const axiosPublic = useAxiosPublic()
+    const axiosPublic = useAxiosPublic()
 
     const handleSignIn = e => {
         e.preventDefault()
@@ -50,10 +51,10 @@ const SignIn = () => {
                     email: result?.user?.email,
                     photo : result?.user?.photoURL
                 }
-                // axiosPublic.post('/users',userInfo)
-                // .then(res=>{
-                //     console.log(res.data);
-                // })
+                axiosPublic.post('/users',userInfo)
+                .then(res=>{
+                    console.log(res.data);
+                })
                 console.log(userInfo);
                 Swal.fire({
                     position: "top",
@@ -62,7 +63,7 @@ const SignIn = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                // navigate(location?.state ? location.state : '/')
+                navigate(location?.state ? location.state : '/')
             })
             .catch(error => {
                 setErr(error.message)
