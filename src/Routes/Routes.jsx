@@ -8,6 +8,8 @@ import CreateStore from "../Pages/CommonRoutes/CreateStore/CreateStore";
 import Dashboard from "../Dashboard/Dashboard";
 import ManagerHome from "../Pages/ManagerRoutes/ManagerHome/ManagerHome";
 import AddProduct from "../Pages/ManagerRoutes/AddProduct/AddProduct";
+import Products from "../Pages/ManagerRoutes/Products/Products";
+import Sales from "../Pages/ManagerRoutes/Sales/Sales";
 
 const Routes = createBrowserRouter([
     {
@@ -34,6 +36,7 @@ const Routes = createBrowserRouter([
                 path:'/createStore',
                 element:<CreateStore></CreateStore>
             }
+            
         ]
         
     },
@@ -48,6 +51,14 @@ const Routes = createBrowserRouter([
             {
                 path:'addProduct',
                 element:<AddProduct></AddProduct>
+            },
+            {
+                path:'products',
+                element:<Products></Products>
+            },
+            {
+                path:'sales',
+                element:<Sales></Sales>
             }
         ]
     }

@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 
 import { authContext } from '../../../Components/AuthProvider/AuthProvider';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
-import useIsManager from '../../../Hooks/useIsManager';
+// import useIsManager from '../../../Hooks/useIsManager';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const SignIn = () => {
@@ -28,13 +28,9 @@ const SignIn = () => {
         await signInUser(email, password)
         try {
             await signInUser(email, password);
-
-
             const IsManager = await axiosSecure.get(`/users/manager/${email}`).then(res => res.data);
-
             console.log('isManager:', IsManager);
             e.target.reset();
-
             navigate(location?.state ? location.state : IsManager ? '/dashboard/managerHome' : '/createStore');
 
             Swal.fire({
@@ -66,7 +62,6 @@ const SignIn = () => {
     
             // Wait for the Google sign-in process to complete, then fetch isManager
             const IsManager = await axiosSecure.get(`/users/manager/${userInfo.email}`).then(res => res.data);
-    
             axiosPublic.post('/users', userInfo)
                 .then(res => {
                     console.log(res.data);

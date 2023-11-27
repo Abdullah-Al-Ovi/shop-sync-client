@@ -12,7 +12,7 @@ const Drawer = () => {
     const [isManager] = useIsManager()
     const { logOut } = useContext(authContext)
     const navigate = useNavigate()
-    console.log(isAdmin);
+    // console.log(isAdmin);
     const handleSignOut = () => {
         logOut()
             .then(() => {

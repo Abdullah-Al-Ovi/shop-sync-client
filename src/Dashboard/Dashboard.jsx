@@ -5,13 +5,15 @@ import Footer from "../SharedComponents/Footer/Footer";
 
 const Dashboard = () => {
     return (
-        <div className="flex">
-            <div className="w-[20%] min-h-screen bg-[#D1A054]">
+        <div className="flex flex-col lg:flex-row">
+            <div className="w-full lg:w-[20%] min-h-full bg-[#D1A054]">
                 <Drawer></Drawer>
             </div>
             <div className="flex-1 m-7">
                 <Outlet></Outlet>
-                <Footer></Footer>
+                <div className="mt-44">
+                    <Footer></Footer>
+                </div>
             </div>
         </div>
     );

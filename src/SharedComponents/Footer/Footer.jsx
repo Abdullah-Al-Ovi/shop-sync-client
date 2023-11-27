@@ -8,7 +8,7 @@ const Footer = () => {
 
 
     return (
-        <div className={`bg-gray-200  mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:p-3`}>
+        <div className={`bg-gray-200 p-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:p-3`}>
         <div className="grid gap-8 row-gap-2 mb-2 sm:grid-cols-2 lg:grid-cols-4">
           <div className="sm:col-span-2">
             <img className='w-[100px] object-contain h-[100px] rounded-full' src={logo} alt="" />
