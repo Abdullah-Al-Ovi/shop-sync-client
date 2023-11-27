@@ -22,7 +22,7 @@ const UpdateProduct = () => {
             setmanager(res.data);
         })
     },[axiosSecure,user?.email])
-    console.log(manager);
+    // console.log(manager);
 
     const { register, handleSubmit } = useForm();
 
@@ -55,7 +55,7 @@ const UpdateProduct = () => {
                 description: data?.description,
                 sellingPrice : sellingPrice
             }
-            console.log(productInfo);
+            // console.log(productInfo);
             
             axiosSecure.patch(`/products/update/${loadedData?._id}`,productInfo)
             .then(res=>{

@@ -1,10 +1,52 @@
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import useShopProducts from "../../../Hooks/useShopProducts";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 
 const Products = () => {
     const [products, refetch] = useShopProducts()
+    const axiosSecure = useAxiosSecure()
+
+    const handleDelete = id =>{
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: `Yes, remove `
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                axiosSecure.delete(`/products/${id}`)
+                .then(res=>{
+    
+                    console.log(res.data);
+                    if(res.data?.deletedCount){
+                       axiosSecure.patch(`/productCountDecrease/${products[0].shopId}`)
+                       .then(res=>{
+                        if(res.data?.modifiedCount){
+                            axiosSecure.patch(`/increaseLimit/${products[0].shopId}`)
+                            .then(res=>{
+                                console.log(res.data);
+                                refetch()
+                            })
+                        }
+                       })
+                    }
+                })
+
+            }
+        });
+
+
+
+            
+    }
     return (
         <div className="">
             <div className="flex justify-between p-3 ">
@@ -46,7 +88,7 @@ const Products = () => {
                                 </td>
                                 <td className=" p-2">
 
-                                    <button className="">
+                                    <button onClick={()=>handleDelete(product._id)} className="">
                                         <FaTrashAlt className="text-red-400 text-xl"></FaTrashAlt>
                                     </button>
 
