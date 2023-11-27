@@ -1,5 +1,6 @@
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import useShopProducts from "../../../Hooks/useShopProducts";
+import { Link } from "react-router-dom";
 
 
 const Products = () => {
@@ -36,9 +37,11 @@ const Products = () => {
                                 </td>
                                 <td className=" p-2">
 
-                                    <button className=" ">
-                                        <FaEdit className="text-blue-400 text-xl"></FaEdit>
-                                    </button>
+                                    <Link to={`/dashboard/updateProduct/${product._id}`}>
+                                        <button className=" ">
+                                            <FaEdit className="text-blue-400 text-xl"></FaEdit>
+                                        </button>
+                                    </Link>
 
                                 </td>
                                 <td className=" p-2">

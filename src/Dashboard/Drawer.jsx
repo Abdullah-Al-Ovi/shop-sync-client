@@ -50,12 +50,12 @@ const Drawer = () => {
                         <li><NavLink style={({ isActive }) => {
                             return { color: isActive ? 'white' : '' }
                         }} to='/dashboard/managerHome'>Shop</NavLink></li>
+                        {/* <li><NavLink style={({ isActive }) => {
+                            return { color: isActive ? 'white' : '' }
+                        }} to='/dashboard/addProduct'>Add Product</NavLink></li> */}
                         <li><NavLink style={({ isActive }) => {
                             return { color: isActive ? 'white' : '' }
-                        }} to='/dashboard/addProduct'>Add Product</NavLink></li>
-                        <li><NavLink style={({ isActive }) => {
-                            return { color: isActive ? 'white' : '' }
-                        }} to='/dashboard/products'>Products</NavLink></li>
+                        }} to='/dashboard/products'>Manage products</NavLink></li>
                         <li><NavLink style={({ isActive }) => {
                             return { color: isActive ? 'white' : '' }
                         }} to='/dashboard/sales'>Sales</NavLink></li>

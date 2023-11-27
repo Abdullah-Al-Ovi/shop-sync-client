@@ -10,6 +10,7 @@ import ManagerHome from "../Pages/ManagerRoutes/ManagerHome/ManagerHome";
 import AddProduct from "../Pages/ManagerRoutes/AddProduct/AddProduct";
 import Products from "../Pages/ManagerRoutes/Products/Products";
 import Sales from "../Pages/ManagerRoutes/Sales/Sales";
+import UpdateProduct from "../Pages/ManagerRoutes/Products/UpdateProduct";
 
 const Routes = createBrowserRouter([
     {
@@ -59,6 +60,11 @@ const Routes = createBrowserRouter([
             {
                 path:'sales',
                 element:<Sales></Sales>
+            },
+            {
+                path:'updateProduct/:id',
+                element:<UpdateProduct></UpdateProduct>,
+                loader:({params})=>fetch(`http://localhost:5001/products/update/${params.id}`)
             }
         ]
     }
