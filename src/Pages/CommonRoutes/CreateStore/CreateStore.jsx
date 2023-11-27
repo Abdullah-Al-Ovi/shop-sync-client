@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { authContext } from "../../../Components/AuthProvider/AuthProvider";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 
 const CreateStore = () => {
@@ -21,7 +22,8 @@ const CreateStore = () => {
         shopLocation: data?.shopLocation,
         shopLogo: data?.shopLogo,
         ownerEmail : user?.email,
-        ownerName : user?.displayName
+        ownerName : user?.displayName,
+        productsCount : 0
 
     }
     console.log(shopInfo);
@@ -37,7 +39,23 @@ const CreateStore = () => {
             axiosSecure.patch(`/users/${user?.email}`,updatedUserInfo)
             .then(res=>{
                 console.log(res.data);
+                Swal.fire({
+                  position: "top",
+                  icon: "success",
+                  title: "Shop Created successful",
+                  showConfirmButton: false,
+                  timer: 1500
+              });
             })
+        }
+        else{
+          Swal.fire({
+            position: "top",
+            icon: "error",
+            title: "You have Already Created a Shop",
+            showConfirmButton: false,
+            timer: 1500
+        });
         }
     })
 
