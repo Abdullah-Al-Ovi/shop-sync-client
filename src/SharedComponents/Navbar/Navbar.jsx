@@ -2,17 +2,24 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import logo from '../../assets/shopsyncLogo.jpg'
 import { useContext } from 'react';
 import { authContext } from '../../Components/AuthProvider/AuthProvider';
+import useIsAdmin from '../../Hooks/useIsAdmin';
+import useIsManager from '../../Hooks/useIsManager';
 
 const Navbar = () => {
     const { user,logOut } = useContext(authContext)
     const navigate = useNavigate()
+    const [isAdmin] = useIsAdmin()
+    const [isManager] = useIsManager()
     console.log(user);
     const routes = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/createStore'>Create Store</NavLink></li>
-        <li><NavLink to='/watchDemo'>Watch Demo</NavLink></li>
+        <li><a target='_blank'  href='/watchDemo'>Watch Demo</a></li>
         {
-            user?.email && <> <li><NavLink to='/dashboard'>Dashboard</NavLink></li></>
+            user?.email && isManager && <> <li><NavLink to='/dashboard/managerHome'>Dashboard</NavLink></li></>
+        }
+        {
+            user?.email && isAdmin && <> <li><NavLink to='/dashboard/adminHome'>Dashboard</NavLink></li></>
         }
         {
             !user?.email && <><li><NavLink to='/sign-up'>Sign up</NavLink></li></>

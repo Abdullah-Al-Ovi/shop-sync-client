@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Drawer from "./Drawer";
+import Footer from "../SharedComponents/Footer/Footer";
 
 
 const Dashboard = () => {
@@ -10,6 +11,7 @@ const Dashboard = () => {
             </div>
             <div className="flex-1 m-7">
                 <Outlet></Outlet>
+                <Footer></Footer>
             </div>
         </div>
     );

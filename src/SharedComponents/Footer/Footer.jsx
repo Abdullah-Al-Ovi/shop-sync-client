@@ -1,4 +1,4 @@
-import logo from '../../assets/shopsyncLogo.jpg'
+import logo from '../../assets/shopsyncLogo-removebg-preview.png'
 
 
 
@@ -8,20 +8,14 @@ const Footer = () => {
 
 
     return (
-        <div className={`px-4 bg-gray-200  pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8`}>
-        <div className="grid gap-10 row-gap-6 mb-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className={`bg-gray-200  mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:p-3`}>
+        <div className="grid gap-8 row-gap-2 mb-2 sm:grid-cols-2 lg:grid-cols-4">
           <div className="sm:col-span-2">
             <img className='w-[100px] object-contain h-[100px] rounded-full' src={logo} alt="" />
-            {/* &rsquo; */}
-            <div className="mt-6 lg:max-w-sm">
+           
+            <div className="mt-2 lg:max-w-sm">
               <p className={`text-sm text-gray-800 `}>
-              Explore the functionalities, create your shop, manage products effortlessly, track sales, and gain insights into your business performance. We&rsquo;re dedicated to providing a user-friendly experience for a variety of roles within the inventory management process.
-              </p>
-              <p className={`mt-4 text-sm text-gray-900`}>
-              For inquiries, support, or feedback, feel free to reach out to our customer service team. Thank you for choosing Shop Sync for your inventory management needs!
-              </p>
-              <p>
-              Shop Sync - Empowering Businesses, Simplifying Inventory.
+              Explore the functionalities, create your shop, manage products effortlessly, track sales, and gain insights into your business performance. 
               </p>
             </div>
           </div>

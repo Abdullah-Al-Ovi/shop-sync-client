@@ -6,6 +6,8 @@ import SignIn from "../Pages/CommonRoutes/SignIn/SignIn";
 import WatchDemo from "../Pages/CommonRoutes/WatchDemo/WatchDemo";
 import CreateStore from "../Pages/CommonRoutes/CreateStore/CreateStore";
 import Dashboard from "../Dashboard/Dashboard";
+import ManagerHome from "../Pages/ManagerRoutes/ManagerHome/ManagerHome";
+import AddProduct from "../Pages/ManagerRoutes/AddProduct/AddProduct";
 
 const Routes = createBrowserRouter([
     {
@@ -37,7 +39,17 @@ const Routes = createBrowserRouter([
     },
     {
         path:'/dashboard',
-        element:<Dashboard></Dashboard>
+        element:<Dashboard></Dashboard>,
+        children:[
+            {
+                path:'managerHome',
+                element:<ManagerHome></ManagerHome>
+            },
+            {
+                path:'addProduct',
+                element:<AddProduct></AddProduct>
+            }
+        ]
     }
 ])
 

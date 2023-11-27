@@ -1,11 +1,13 @@
 
-import { useContext,  useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 
 import { authContext } from '../../../Components/AuthProvider/AuthProvider';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
+import useIsManager from '../../../Hooks/useIsManager';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const SignIn = () => {
     const { googleSignIn, signInUser } = useContext(authContext)
@@ -13,63 +15,80 @@ const SignIn = () => {
     const location = useLocation()
     const navigate = useNavigate()
     const axiosPublic = useAxiosPublic()
+    const axiosSecure = useAxiosSecure()
+    // const [isManager] = useIsManager()
+    // console.log(isManager);
 
-    const handleSignIn = e => {
+    const handleSignIn = async (e) => {
         e.preventDefault()
         const email = e.target.email.value
         const password = e.target.password.value
 
         setErr('')
-        signInUser(email, password)
-            .then(() => {
-                e.target.reset()
-                navigate(location?.state ? location.state : '/')
-                Swal.fire({
-                    position: "top",
-                    icon: "success",
-                    title: "Signed in successful",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
+        await signInUser(email, password)
+        try {
+            await signInUser(email, password);
 
-            }
-            )
-            .catch(error => {
-                console.log(error.message);
-                setErr(error.message)
-            })
 
+            const IsManager = await axiosSecure.get(`/users/manager/${email}`).then(res => res.data);
+
+            console.log('isManager:', IsManager);
+            e.target.reset();
+
+            navigate(location?.state ? location.state : IsManager ? '/dashboard/managerHome' : '/createStore');
+
+            Swal.fire({
+                position: "top",
+                icon: "success",
+                title: "Signed in successful",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        } catch (error) {
+            console.log(error.message);
+            setErr(error.message);
+        }
     }
 
-    const handleGoogleSignIn = () => {
-        setErr('')
-        googleSignIn()
-            .then((result) => {
-                console.log(result);
-                const userInfo = {
-                    name: result?.user?.displayName,
-                    email: result?.user?.email,
-                    photo : result?.user?.photoURL
-                }
-                axiosPublic.post('/users',userInfo)
-                .then(res=>{
+    const handleGoogleSignIn = async () => {
+        setErr('');
+    
+        try {
+            const result = await googleSignIn();
+    
+            console.log(result);
+    
+            const userInfo = {
+                name: result?.user?.displayName,
+                email: result?.user?.email,
+                photo: result?.user?.photoURL
+            };
+    
+            // Wait for the Google sign-in process to complete, then fetch isManager
+            const IsManager = await axiosSecure.get(`/users/manager/${userInfo.email}`).then(res => res.data);
+    
+            axiosPublic.post('/users', userInfo)
+                .then(res => {
                     console.log(res.data);
-                })
-                console.log(userInfo);
-                Swal.fire({
-                    position: "top",
-                    icon: "success",
-                    title: "Sign in with Google Successful!",
-                    showConfirmButton: false,
-                    timer: 1500
                 });
-                navigate(location?.state ? location.state : '/')
-            })
-            .catch(error => {
-                setErr(error.message)
-            })
-    }
-
+    
+            console.log(userInfo);
+    
+            Swal.fire({
+                position: "top",
+                icon: "success",
+                title: "Sign in with Google Successful!",
+                showConfirmButton: false,
+                timer: 1500
+            });
+    
+            navigate(location?.state ? location.state : IsManager ? '/dashboard/managerHome' : '/createShop');
+    
+        } catch (error) {
+            setErr(error.message);
+        }
+    };
+    
     return (
         <div className=' my-11'>
             <div className="flex mx-auto  flex-col w-full max-w-md px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10">
@@ -110,7 +129,7 @@ const SignIn = () => {
                                 <input type="password" name='password' className=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Your password" />
                             </div>
                         </div>
-                        
+
                         <div className="flex items-center mb-6 -mt-4">
 
                         </div>
@@ -118,9 +137,9 @@ const SignIn = () => {
                             {
                                 err && <p className="text-red-500 font-semibold mb-3">{err}</p>
                             }
-                            <button type="submit" 
-                           
-                            className="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                            <button type="submit"
+
+                                className="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
                                 Login
                             </button>
                         </div>

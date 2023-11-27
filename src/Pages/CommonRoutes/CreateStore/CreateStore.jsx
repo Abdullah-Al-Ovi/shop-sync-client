@@ -29,7 +29,12 @@ const CreateStore = () => {
     .then(res=>{
         console.log(res.data);
         if(res?.data?.insertedId){
-            axiosSecure.patch(`/users/${user?.email}`)
+            const updatedUserInfo = {
+                shopName:shopInfo.shopName,
+                shopLogo:shopInfo.shopLogo,
+                shopId: res?.data?.insertedId,
+            }
+            axiosSecure.patch(`/users/${user?.email}`,updatedUserInfo)
             .then(res=>{
                 console.log(res.data);
             })
