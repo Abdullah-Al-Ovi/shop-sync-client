@@ -29,7 +29,7 @@ const Drawer = () => {
                     isAdmin && <>
                         <li><NavLink to='/dashboard/adminHome' style={({ isActive }) => {
                             return { color: isActive ? 'white' : '' }
-                        }}>Manage Shop</NavLink></li>
+                        }}>Admin Home</NavLink></li>
                         <li><NavLink to='/dashboard/addItems' style={({ isActive }) => {
                             return { color: isActive ? 'white' : '' }
                         }}>Sales summary</NavLink></li>
@@ -59,7 +59,7 @@ const Drawer = () => {
                         <li><NavLink style={({ isActive }) => {
                             return { color: isActive ? 'white' : '' }
                         }} to='/dashboard/sales'>Sales</NavLink></li>
-                        <li><NavLink to='/dashboard/cart' style={({ isActive }) => {
+                        <li><NavLink to='/dashboard/checkOut' style={({ isActive }) => {
                             return { color: isActive ? 'white' : '' }
                         }} >Check Out</NavLink></li>
                         <li><NavLink style={({ isActive }) => {

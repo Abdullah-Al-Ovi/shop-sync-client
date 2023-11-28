@@ -17,7 +17,7 @@ const useShopProducts = () => {
          return res.data
         }
     })
-    console.log(products.length);
+    // console.log(products.length);
     // console.log(cart);
      return[products,refetch] 
 };

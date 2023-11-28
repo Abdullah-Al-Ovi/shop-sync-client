@@ -11,11 +11,21 @@ import AddProduct from "../Pages/ManagerRoutes/AddProduct/AddProduct";
 import Products from "../Pages/ManagerRoutes/Products/Products";
 import Sales from "../Pages/ManagerRoutes/Sales/Sales";
 import UpdateProduct from "../Pages/ManagerRoutes/Products/UpdateProduct";
+import CheckOut from "../Pages/ManagerRoutes/CheckOut/CheckOut";
+import SalesSummary from "../Pages/ManagerRoutes/SalesSummary/SalesSummary";
+import PrivateRoute from "../Components/PrivateRoute/PrivateRoute";
+import AdminHome from "../Pages/AdminRoutes/AdminHome/AdminHome";
+import AdminPrivateRoute from "../Components/AdminPrivateRoute/AdminPrivateRoute";
+import AuthorizationerrorPage from "../Pages/AuthorizationErrorPage/AuthorizationerrorPage";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import ManagerPrivateRoute from "../Components/ManagerPrivateRoute/ManagerPrivateRoute";
+import AdManPrivateRoute from "../Components/AdManPrivateRoute/AdManPrivateRoute";
 
 const Routes = createBrowserRouter([
     {
         path:'/',
         element:<Root></Root>,
+        errorElement:<ErrorPage></ErrorPage>,
         children:[
             {
                 path:'/',
@@ -35,36 +45,53 @@ const Routes = createBrowserRouter([
             },
             {
                 path:'/createStore',
-                element:<CreateStore></CreateStore>
+                element:<PrivateRoute><CreateStore></CreateStore></PrivateRoute>
+            },
+            {
+                path:'/authorizationError',
+                element:<AuthorizationerrorPage></AuthorizationerrorPage>
             }
             
         ]
         
     },
     {
-        path:'/dashboard',
-        element:<Dashboard></Dashboard>,
+        path:'dashboard',
+        element:<AdManPrivateRoute><Dashboard></Dashboard></AdManPrivateRoute>,
         children:[
             {
                 path:'managerHome',
-                element:<ManagerHome></ManagerHome>
+                element:<ManagerPrivateRoute><ManagerHome></ManagerHome></ManagerPrivateRoute>
             },
             {
                 path:'addProduct',
-                element:<AddProduct></AddProduct>
+                element:<ManagerPrivateRoute><AddProduct></AddProduct></ManagerPrivateRoute>
             },
             {
                 path:'products',
-                element:<Products></Products>
+                element:<ManagerPrivateRoute><Products></Products></ManagerPrivateRoute>
             },
             {
                 path:'sales',
-                element:<Sales></Sales>
+                element:<ManagerPrivateRoute><Sales></Sales></ManagerPrivateRoute>
             },
             {
                 path:'updateProduct/:id',
-                element:<UpdateProduct></UpdateProduct>,
+                element:<ManagerPrivateRoute><UpdateProduct></UpdateProduct></ManagerPrivateRoute>,
                 loader:({params})=>fetch(`http://localhost:5001/products/update/${params.id}`)
+            },
+            {
+                path:'checkOut',
+                element:<ManagerPrivateRoute><CheckOut></CheckOut></ManagerPrivateRoute>
+            },
+            {
+                path:'salesSummary',
+                element:<ManagerPrivateRoute><SalesSummary></SalesSummary></ManagerPrivateRoute>
+            },
+            // Admin Routes
+            {
+                path:'adminHome',
+                element:<AdminPrivateRoute><AdminHome></AdminHome></AdminPrivateRoute>
             }
         ]
     }

@@ -6,7 +6,7 @@ import Footer from "../SharedComponents/Footer/Footer";
 
 const Root = () => {
     const location = useLocation()
-  const avoidNavFoot = location?.pathname === '/sign-in' || location?.pathname === '/sign-up'
+  const avoidNavFoot = location?.pathname === '/sign-in' || location?.pathname === '/sign-up' || location?.pathname === '/authorizationError'
 
   useEffect(()=>{
     window.scrollTo(0,0)

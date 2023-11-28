@@ -4,7 +4,7 @@ import '../../CommonRoutes/Home/CSS/banner.css'
 
 const Banner = () => {
     return (
-      <header className="bg-gray-900 pattern">
+      <header  data-aos="fade-up" className="bg-gray-900 pattern" >
       <div className="container px-6 mx-auto">
           <nav className="flex flex-col py-6 sm:flex-row sm:justify-between sm:items-center">
               
@@ -17,7 +17,7 @@ const Banner = () => {
                   <h2 className="text-3xl font-semibold text-gray-100 lg:text-4xl">Effortless</h2>
   
                   <h3 className="mt-2 text-2xl font-semibold text-gray-100">
-                  nventory Management  <span className="text-blue-400"> for Every Business</span>
+                  Inventory Management  <span className="text-blue-400"> for Every Business</span>
                   </h3>
   
                   <p className="mt-4 text-gray-100">Explore the Future of Inventory Control with Shop Sync. From Product Management to Sales Insights, We have Got You Covered! 

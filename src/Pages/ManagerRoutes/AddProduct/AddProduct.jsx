@@ -41,7 +41,8 @@ const AddProduct = () => {
             const tax = (buyingPrice * 7.5)/100
             const profit = (buyingPrice*parseFloat(data?.profitMargin))/100
             const sellingPrice = buyingPrice + tax + profit
-
+            const discount = (buyingPrice * parseFloat(data?.discount))/100
+            const singleProfit = sellingPrice - buyingPrice
             console.log(res.data.success);
             const productInfo = {
                 productName : data?.productName,
@@ -50,13 +51,14 @@ const AddProduct = () => {
                 productLocation : data?.productLocation,
                 productionCost : parseFloat(data?.productionCost),
                 profitMargin: parseFloat(data?.profitMargin),
-                discount : parseFloat(data?.discount),
+                discount : discount,
                 description: data?.description,
                 manager : user?.email,
                 shopId: manager?.shopId,
                 shopName: manager?.shopName,
                 saleCount : 0,
-                sellingPrice : sellingPrice
+                sellingPrice : sellingPrice,
+                singleProfit : singleProfit
             }
             console.log(productInfo);
             axiosSecure.post('/addProduct',productInfo)
@@ -84,7 +86,7 @@ const AddProduct = () => {
                     Swal.fire({
                         position: "top",
                         icon: "error",
-                        title: "you Have Exceeded Product Adding Limit",
+                        title: "You Have Exceeded Product Adding Limit",
                         showConfirmButton: false,
                         timer: 1500
                     });

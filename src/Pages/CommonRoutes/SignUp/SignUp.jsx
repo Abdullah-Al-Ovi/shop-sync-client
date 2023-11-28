@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 
 import { authContext } from "../../../Components/AuthProvider/AuthProvider";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import { Helmet } from "react-helmet";
 
 
 const SignUp = () => {
@@ -69,6 +70,9 @@ const SignUp = () => {
     }
     return (
         <section className="bg-white my-7 dark:bg-gray-900">
+            <Helmet>
+                <title>ShopSync | Sign up</title>
+            </Helmet>
             <div className="container flex  justify-center min-h-screen px-6 mx-auto ">
                 <form className="w-full max-w-md" onSubmit={handleSubmit(onSubmit)}>
 

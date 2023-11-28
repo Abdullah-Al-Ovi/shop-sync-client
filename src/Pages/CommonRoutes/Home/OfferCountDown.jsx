@@ -42,8 +42,8 @@ const OfferCountDown = () => {
   }, []);
 
   return (
-    <div>
-      <div className="hero min-h-screen bg-base-200">
+    <div  data-aos="fade-up">
+      <div  data-aos="flip-left" className="hero min-h-screen bg-base-200">
         <div className="hero-content text-center">
           <div className="max-w-md">
             <h1 className="text-xl md:text-2xl lg:text-5xl font-medium md:font-bold">Limited Time Offer!</h1>

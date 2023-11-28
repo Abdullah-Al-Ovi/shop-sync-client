@@ -8,6 +8,7 @@ import { authContext } from '../../../Components/AuthProvider/AuthProvider';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 // import useIsManager from '../../../Hooks/useIsManager';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet';
 
 const SignIn = () => {
     const { googleSignIn, signInUser } = useContext(authContext)
@@ -25,7 +26,7 @@ const SignIn = () => {
         const password = e.target.password.value
 
         setErr('')
-        await signInUser(email, password)
+        // await signInUser(email, password)
         try {
             await signInUser(email, password);
             const IsManager = await axiosSecure.get(`/users/manager/${email}`).then(res => res.data);
@@ -48,27 +49,27 @@ const SignIn = () => {
 
     const handleGoogleSignIn = async () => {
         setErr('');
-    
+
         try {
             const result = await googleSignIn();
-    
+
             console.log(result);
-    
+
             const userInfo = {
                 name: result?.user?.displayName,
                 email: result?.user?.email,
                 photo: result?.user?.photoURL
             };
-    
+
             // Wait for the Google sign-in process to complete, then fetch isManager
             const IsManager = await axiosSecure.get(`/users/manager/${userInfo.email}`).then(res => res.data);
             axiosPublic.post('/users', userInfo)
                 .then(res => {
                     console.log(res.data);
                 });
-    
+
             console.log(userInfo);
-    
+
             Swal.fire({
                 position: "top",
                 icon: "success",
@@ -76,16 +77,21 @@ const SignIn = () => {
                 showConfirmButton: false,
                 timer: 1500
             });
-    
+
             navigate(location?.state ? location.state : IsManager ? '/dashboard/managerHome' : '/createShop');
-    
+
         } catch (error) {
             setErr(error.message);
+            console.log(error.message);
         }
     };
-    
+
     return (
         <div className=' my-11'>
+
+            <Helmet>
+                <title>ShopSync | Sign in</title>
+            </Helmet>
             <div className="flex mx-auto  flex-col w-full max-w-md px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10">
                 <div className="self-center mb-6 text-xl font-light text-gray-600 sm:text-2xl dark:text-white">
                     Sign In To Your Account

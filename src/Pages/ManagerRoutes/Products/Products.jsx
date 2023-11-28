@@ -51,8 +51,7 @@ const Products = () => {
         <div className="">
             <div className="flex justify-between p-3 ">
                 <h2 className="text-lg font-medium">Manage Product</h2>
-                <h2 className="text-lg font-medium">TOTAL Products: {products?.length}</h2>
-
+                <h2 className="text-lg font-medium">Total Products: {products?.length}</h2>
             </div>
             <div>
                 <table className="w-full ">

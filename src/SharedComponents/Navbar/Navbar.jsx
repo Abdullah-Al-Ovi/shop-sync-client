@@ -10,7 +10,7 @@ const Navbar = () => {
     const navigate = useNavigate()
     const [isAdmin] = useIsAdmin()
     const [isManager] = useIsManager()
-    console.log(user);
+    // console.log(user);
     const routes = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/createStore'>Create Store</NavLink></li>

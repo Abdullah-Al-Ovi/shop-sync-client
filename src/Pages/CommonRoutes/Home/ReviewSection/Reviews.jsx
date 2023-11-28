@@ -11,7 +11,8 @@ const Reviews = () => {
 
     return (
 
-        <div>
+        <div data-aos="fade-up"
+        data-aos-duration="1000">
             <div className=" flex gap-5">
                 {
                     reviews?.map(review => {
