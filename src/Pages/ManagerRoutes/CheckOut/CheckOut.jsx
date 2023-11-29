@@ -2,21 +2,35 @@ import { useContext, useState } from "react";
 import useCart from "../../../Hooks/useCart";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { authContext } from "../../../Components/AuthProvider/AuthProvider";
-
+import { useReactToPrint } from "react-to-print";
+import Swal from "sweetalert2";
+import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const CheckOut = () => {
     const{user}= useContext(authContext)
     const [cart, refetch] = useCart()
     // console.log(cart);
-    const [isDate, setIsDate] = useState(false)
+    const navigate = useNavigate()
+ 
     const [date,setDate] = useState('')
     const [time,setTime] = useState('')
     const axiosSecure = useAxiosSecure()
+    const compoToPdf = useRef()
+
+    const generatePdf = useReactToPrint({
+        content:()=>compoToPdf.current,
+        documentTitle:'checkout.pdf',
+        onAfterPrint:()=>{
+            navigate('/dashboard/salesSummary')
+        }
+      
+    })
   
 
     const handleGetPaid = () => {
-        setIsDate(true)
+       
         const currentDate = new Date();
         const year = currentDate.getFullYear();
         const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
@@ -50,8 +64,15 @@ const CheckOut = () => {
                 axiosSecure.patch(`/updateSaleCount/${item?.productId}`)
                 .then(res=>{
                     console.log(res.data);
+                    generatePdf()
                     refetch()
-                    setIsDate(false)
+                    Swal.fire({
+                        position: "top",
+                        icon: "success",
+                        title: "checked out Successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 })
               })  
             }
@@ -62,7 +83,8 @@ const CheckOut = () => {
     return (
         <div >
             <h2 className="text-lg font-semibold my-5">Check out from here </h2>
-            <div>
+            <div ref={compoToPdf} style={{width:'100%'}}>
+            <div >
                 <table className="w-full ">
                     <thead className="bg-[#D1A054] text-white">
                         <tr>
@@ -87,12 +109,12 @@ const CheckOut = () => {
                     </tbody>
                 </table>
             </div>
-            {
-                isDate && <div>
-                    <p>Date:{date} </p>
-                    <p>Time: {time} </p>
+            <div className="my-5 ml-5">
+                    <p className="font-medium">Date:{date} </p>
+                    <p className="font-medium">Time: {time} </p>
                 </div>
-            }
+           
+            </div>
             <div className="text-center my-5">
                 {
                     cart?.length > 0 && <button  onClick={handleGetPaid} className="btn ">GET PAID</button>

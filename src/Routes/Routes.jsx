@@ -20,6 +20,8 @@ import AuthorizationerrorPage from "../Pages/AuthorizationErrorPage/Authorizatio
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import ManagerPrivateRoute from "../Components/ManagerPrivateRoute/ManagerPrivateRoute";
 import AdManPrivateRoute from "../Components/AdManPrivateRoute/AdManPrivateRoute";
+import ManageShop from "../Pages/AdminRoutes/ManageShop/ManageShop";
+import PaySubs from "../Pages/ManagerRoutes/PaySubs/PaySubs";
 
 const Routes = createBrowserRouter([
     {
@@ -39,10 +41,11 @@ const Routes = createBrowserRouter([
                 path:'sign-in',
                 element:<SignIn></SignIn>
             },
-            {
-                path:'watchDemo',
-                element:<WatchDemo></WatchDemo>
-            },
+
+            // {
+            //     path:'watchDemo',
+            //     element:<WatchDemo></WatchDemo>
+            // },
             {
                 path:'/createStore',
                 element:<PrivateRoute><CreateStore></CreateStore></PrivateRoute>
@@ -78,7 +81,7 @@ const Routes = createBrowserRouter([
             {
                 path:'updateProduct/:id',
                 element:<ManagerPrivateRoute><UpdateProduct></UpdateProduct></ManagerPrivateRoute>,
-                loader:({params})=>fetch(`http://localhost:5001/products/update/${params.id}`)
+                loader:({params})=>fetch(`https://shopsync-server.vercel.app/products/update/${params.id}`)
             },
             {
                 path:'checkOut',
@@ -88,10 +91,18 @@ const Routes = createBrowserRouter([
                 path:'salesSummary',
                 element:<ManagerPrivateRoute><SalesSummary></SalesSummary></ManagerPrivateRoute>
             },
+            {
+                path:'subscription',
+                element:<PaySubs></PaySubs>
+            },
             // Admin Routes
             {
                 path:'adminHome',
                 element:<AdminPrivateRoute><AdminHome></AdminHome></AdminPrivateRoute>
+            },
+            {
+                path:'manageShop',
+                element:<AdminPrivateRoute><ManageShop></ManageShop></AdminPrivateRoute>
             }
         ]
     }

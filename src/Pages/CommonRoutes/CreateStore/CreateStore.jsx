@@ -5,12 +5,14 @@ import { useForm } from "react-hook-form";
 import { authContext } from "../../../Components/AuthProvider/AuthProvider";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 
 const CreateStore = () => {
 
   const {user} = useContext(authContext)
   const axiosSecure = useAxiosSecure()
+  const navigate = useNavigate()
 
   const { register, handleSubmit,reset } = useForm();
 
@@ -39,6 +41,8 @@ const CreateStore = () => {
             axiosSecure.patch(`/users/${user?.email}`,updatedUserInfo)
             .then(res=>{
                 console.log(res.data);
+                navigate('/dashboard/managerHome')
+                reset()
                 Swal.fire({
                   position: "top",
                   icon: "success",

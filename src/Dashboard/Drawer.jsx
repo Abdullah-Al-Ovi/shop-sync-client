@@ -4,7 +4,7 @@ import { authContext } from "../Components/AuthProvider/AuthProvider";
 import useIsManager from "../Hooks/useIsManager";
 import useIsAdmin from "../Hooks/useIsAdmin";
 import logo from '../assets/shopsyncLogo-removebg-preview.png'
-import { FaSignOutAlt } from "react-icons/fa";
+import { FaHome, FaSignOutAlt } from "react-icons/fa";
 
 
 const Drawer = () => {
@@ -30,9 +30,9 @@ const Drawer = () => {
                         <li><NavLink to='/dashboard/adminHome' style={({ isActive }) => {
                             return { color: isActive ? 'white' : '' }
                         }}>Admin Home</NavLink></li>
-                        <li><NavLink to='/dashboard/addItems' style={({ isActive }) => {
+                        <li><NavLink to='/dashboard/manageShop' style={({ isActive }) => {
                             return { color: isActive ? 'white' : '' }
-                        }}>Sales summary</NavLink></li>
+                        }}>Manage Shop</NavLink></li>
                         <li><NavLink to='/dashboard/manageItems' style={({ isActive }) => {
                             return { color: isActive ? 'white' : '' }
                         }}>MANAGE ITEMS</NavLink></li>
@@ -48,25 +48,25 @@ const Drawer = () => {
                 {
                     isManager && <>
                         <li><NavLink style={({ isActive }) => {
-                            return { color: isActive ? 'white' : '' }
+                            return { color: isActive ? 'blue' : '' }
                         }} to='/dashboard/managerHome'>Shop</NavLink></li>
                         {/* <li><NavLink style={({ isActive }) => {
                             return { color: isActive ? 'white' : '' }
                         }} to='/dashboard/addProduct'>Add Product</NavLink></li> */}
                         <li><NavLink style={({ isActive }) => {
-                            return { color: isActive ? 'white' : '' }
+                            return { color: isActive ? 'blue' : '' }
                         }} to='/dashboard/products'>Manage products</NavLink></li>
                         <li><NavLink style={({ isActive }) => {
-                            return { color: isActive ? 'white' : '' }
+                            return { color: isActive ? 'blue' : '' }
                         }} to='/dashboard/sales'>Sales</NavLink></li>
-                        <li><NavLink to='/dashboard/checkOut' style={({ isActive }) => {
+                        {/* <li><NavLink to='/dashboard/checkOut' style={({ isActive }) => {
                             return { color: isActive ? 'white' : '' }
-                        }} >Check Out</NavLink></li>
+                        }} >Check Out</NavLink></li> */}
                         <li><NavLink style={({ isActive }) => {
-                            return { color: isActive ? 'white' : '' }
+                            return { color: isActive ? 'blue' : '' }
                         }} to='/dashboard/subscription'>Payment & Subscription</NavLink></li>
                         <li><NavLink style={({ isActive }) => {
-                            return { color: isActive ? 'white' : '' }
+                            return { color: isActive ? 'blue' : '' }
                         }} to='/dashboard/salesSummary'>Sales summary</NavLink></li>
                     </>
                 }
@@ -74,7 +74,7 @@ const Drawer = () => {
                 <div className="divider font-bold"></div>
 
                 {/* common  */}
-                <li><NavLink to='/'>Home</NavLink></li>
+                <li ><NavLink className="flex items-center gap-1" to='/'><FaHome></FaHome> <span>Home</span></NavLink></li>
                 <button className="flex items-center gap-1" onClick={handleSignOut}>
                     <FaSignOutAlt></FaSignOutAlt>
                     <li><a>Logout</a></li>

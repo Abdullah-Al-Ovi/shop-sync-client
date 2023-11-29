@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useSale from '../../../Hooks/useSale';
 import useShopProducts from '../../../Hooks/useShopProducts';
-import { FaProductHunt, FaRegCreditCard } from 'react-icons/fa';
 
 const SalesSummary = () => {
 
@@ -61,7 +60,7 @@ const SalesSummary = () => {
             {/*  */}
             <div className='my-7'>
                 <table className="w-full ">
-                    <thead className="bg-[#D1A054] text-white">
+                    <thead className="bg-gray-300 text-black">
                         <tr>
                             <th className="border-2 p-2">Name</th>
                             <th className="border-2 p-2">Selling Date</th>

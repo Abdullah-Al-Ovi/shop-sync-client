@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useContext, useEffect, useState } from "react";
 import { authContext } from "../../../Components/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -15,6 +16,7 @@ const AddProduct = () => {
     const {user} = useContext(authContext)
     const axiosPublic = useAxiosPublic()
     const axiosSecure = useAxiosSecure()
+    const navigate  = useNavigate()
     const [manager,setmanager] = useState({})
     useEffect(()=>{
         axiosSecure.get(`/users/${user?.email}`)
@@ -51,7 +53,7 @@ const AddProduct = () => {
                 productLocation : data?.productLocation,
                 productionCost : parseFloat(data?.productionCost),
                 profitMargin: parseFloat(data?.profitMargin),
-                discount : discount,
+                discount : discount.toFixed(3),
                 description: data?.description,
                 manager : user?.email,
                 shopId: manager?.shopId,
@@ -90,6 +92,7 @@ const AddProduct = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
+                    navigate('/dashboard/subscription')
                 }
             })
         }

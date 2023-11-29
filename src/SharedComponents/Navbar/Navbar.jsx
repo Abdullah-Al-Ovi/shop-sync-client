@@ -6,15 +6,20 @@ import useIsAdmin from '../../Hooks/useIsAdmin';
 import useIsManager from '../../Hooks/useIsManager';
 
 const Navbar = () => {
-    const { user,logOut } = useContext(authContext)
+    const { user, logOut } = useContext(authContext)
     const navigate = useNavigate()
     const [isAdmin] = useIsAdmin()
     const [isManager] = useIsManager()
     // console.log(user);
     const routes = <>
         <li><NavLink to='/'>Home</NavLink></li>
-        <li><NavLink to='/createStore'>Create Store</NavLink></li>
-        <li><a target='_blank'  href='/watchDemo'>Watch Demo</a></li>
+        {
+            isManager || <li><NavLink to='/createStore'>Create Store</NavLink></li>
+        }
+        <li>
+            <a target='_blank' rel='noreferrer' href="https://www.youtube.com/embed/TtdHWBoCU4I?si=g2AuXhGJ3VjoPaEw">Watch Demo</a>
+        </li>
+
         {
             user?.email && isManager && <> <li><NavLink to='/dashboard/managerHome'>Dashboard</NavLink></li></>
         }
@@ -24,16 +29,16 @@ const Navbar = () => {
         {
             !user?.email && <><li><NavLink to='/sign-up'>Sign up</NavLink></li></>
         }
-        
+
 
     </>
 
-const handleSignOut=()=>{
-    logOut()
-    .then(()=>{
-        navigate('/')
-    })
-}
+    const handleSignOut = () => {
+        logOut()
+            .then(() => {
+                navigate('/')
+            })
+    }
 
     return (
         <div className="navbar border-[1px] shadow-xl">
@@ -56,7 +61,7 @@ const handleSignOut=()=>{
                 </ul>
             </div>
             <div className="navbar-end">
-                {user ?  
+                {user ?
                     <div className="dropdown  dropdown-end">
                         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">

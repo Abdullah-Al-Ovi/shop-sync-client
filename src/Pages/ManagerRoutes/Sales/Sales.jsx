@@ -66,7 +66,7 @@ const Sales = () => {
             </div>
             <div>
                 <table className="w-full ">
-                    <thead className="bg-[#D1A054] text-white">
+                    <thead className="bg-gray-300 text-black">
                         <tr>
                             <th className="border-2 p-2">ID</th>
                             <th className="border-2 p-2"></th>

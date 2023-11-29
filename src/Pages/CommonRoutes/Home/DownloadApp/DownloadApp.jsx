@@ -1,9 +1,8 @@
 
-import { useContext } from 'react';
 import mobileApp from '../../../../assets/faq.jpg'
 
 const DownloadApp = () => {
-    
+   
     return (
        <div>
 
@@ -21,7 +20,7 @@ const DownloadApp = () => {
             <p className={`block max-w-2xl mt-4 text-black dark:text-gray-300 `}>Download our mobile app to access a world of convenience at your fingertips. Whether you&rsquo;re on the go or at home, our app provides a seamless and user-friendly experience, giving you quick access to our services, products, and exclusive offers.</p>
 
             <div className="mt-6 sm:-mx-2">
-                <button className={`inline-flex items-center justify-center w-full px-4 text-sm py-2.5 overflow-hidden text-white transition-colors duration-300 bg-gray-900 rounded-lg shadow sm:w-auto sm:mx-2 hover:bg-gray-700  focus:ring focus:ring-gray-300 focus:ring-opacity-80 $`}>
+                <button className={`inline-flex items-center justify-center w-full px-4 text-sm py-2.5 overflow-hidden text-white transition-colors duration-300 bg-gray-900 rounded-lg shadow sm:w-auto sm:mx-2 hover:bg-gray-700  focus:ring focus:ring-gray-300 focus:ring-opacity-80 `}>
                     <svg  className="w-5 h-5 mx-2       fill-current"
                     xmlns="http://www.w3.org/2000/svg"
                     xmlnsXlink="http://www.w3.org/1999/xlink"

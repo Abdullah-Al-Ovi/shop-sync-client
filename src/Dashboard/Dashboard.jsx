@@ -10,7 +10,7 @@ const Dashboard = () => {
             <Helmet>
         <title>ShopSync | Dashboard</title>
       </Helmet>
-            <div className="w-full lg:w-[20%] min-h-full bg-[#D1A054]">
+            <div className="w-full lg:w-[20%] min-h-full bg-slate-300">
                 <Drawer></Drawer>
             </div>
             <div className="flex-1 m-7">

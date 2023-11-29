@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { authContext } from "../Components/AuthProvider/AuthProvider";
 
 const axiosSecure = axios.create({
-    baseURL:'http://localhost:5001'
+    baseURL:'https://shopsync-server.vercel.app'
 })
 
 const useAxiosSecure = () => {
