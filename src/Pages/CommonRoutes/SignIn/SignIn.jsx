@@ -29,10 +29,10 @@ const SignIn = () => {
         // await signInUser(email, password)
         try {
             await signInUser(email, password);
-            const IsManager = await axiosSecure.get(`/users/manager/${email}`).then(res => res.data);
+            const IsManager = await axiosSecure.get(`/users/manager/${email}`)
             console.log('isManager:', IsManager);
             e.target.reset();
-            navigate(location?.state ? location.state : IsManager ? '/dashboard/managerHome' : '/createStore');
+            navigate(location?.state ? location.state : IsManager?.data ? '/dashboard/managerHome' : '/createStore');
 
             Swal.fire({
                 position: "top",
@@ -62,7 +62,7 @@ const SignIn = () => {
             };
 
             // Wait for the Google sign-in process to complete, then fetch isManager
-            const IsManager = await axiosSecure.get(`/users/manager/${userInfo.email}`).then(res => res.data);
+            const IsManager = await axiosSecure.get(`/users/manager/${userInfo.email}`)
             axiosPublic.post('/users', userInfo)
                 .then(res => {
                     console.log(res.data);
@@ -78,7 +78,7 @@ const SignIn = () => {
                 timer: 1500
             });
 
-            navigate(location?.state ? location.state : IsManager ? '/dashboard/managerHome' : '/createShop');
+            navigate(location?.state ? location.state : IsManager?.data ? '/dashboard/managerHome' : '/createShop');
 
         } catch (error) {
             setErr(error.message);
