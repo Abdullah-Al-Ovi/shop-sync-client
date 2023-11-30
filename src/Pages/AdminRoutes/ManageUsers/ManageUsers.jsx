@@ -59,7 +59,7 @@ const ManageUsers = () => {
                 <th className="border-2 p-2">Shop</th>
                 <th className="border-2 p-2">user</th>
                 <th className="border-2 p-2">Role</th>
-                <th className="border-2 p-2">Send Notice</th>
+                <th className="border-2 p-2">Send Promotional Email</th>
               </tr>
             </thead>
             <tbody>

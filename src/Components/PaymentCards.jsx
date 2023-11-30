@@ -2,7 +2,8 @@
 
 const PaymentCards = ({fee,plan,type}) => {
     return (
-        <div className="mb-4 overflow-hidden rounded-lg shadow-lg">
+        <div>
+          <div className="mb-4 overflow-hidden rounded-lg shadow-lg">
         <div className="px-6 py-8 bg-white dark:bg-gray-800 sm:p-10 sm:pb-6">
           <div className="flex justify-center">
             <span className="inline-flex px-4 py-1 text-sm font-bold text-violet-600 leading-5 tracking-wide uppercase rounded-full dark:text-white">
@@ -62,23 +63,6 @@ const PaymentCards = ({fee,plan,type}) => {
               </p>
             </li>
             <li className="flex items-start mt-4">
-              {/* <div className="flex-shrink-0">
-                <svg
-                  className="w-6 h-6 text-green-500"
-                  stroke="currentColor"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                    
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M5 13l4 4L19 7"
-                  ></path>
-                </svg>
-              </div> */}
-              
             </li>
           </ul>
           <div className="mt-6 rounded-md shadow">
@@ -91,6 +75,7 @@ const PaymentCards = ({fee,plan,type}) => {
           </div>
         </div>
       </div>
+        </div>
     );
 };
 

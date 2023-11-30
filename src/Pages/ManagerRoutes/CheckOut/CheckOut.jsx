@@ -3,9 +3,9 @@ import useCart from "../../../Hooks/useCart";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { authContext } from "../../../Components/AuthProvider/AuthProvider";
 import { useReactToPrint } from "react-to-print";
-import Swal from "sweetalert2";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 const CheckOut = () => {
@@ -13,7 +13,6 @@ const CheckOut = () => {
     const [cart, refetch] = useCart()
     // console.log(cart);
     const navigate = useNavigate()
- 
     const [date,setDate] = useState('')
     const [time,setTime] = useState('')
     const axiosSecure = useAxiosSecure()
@@ -24,8 +23,7 @@ const CheckOut = () => {
         documentTitle:'checkout.pdf',
         onAfterPrint:()=>{
             navigate('/dashboard/salesSummary')
-        }
-      
+        }  
     })
   
 

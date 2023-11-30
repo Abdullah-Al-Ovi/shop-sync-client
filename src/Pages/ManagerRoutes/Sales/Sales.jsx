@@ -36,10 +36,6 @@ const Sales = () => {
             productQuantity: find?.productQuantity,
             sellingPrice : find?.sellingPrice
         }
-        // 
-
-
-       
         //    console.log(productInfo);
         axiosSecure.post('/carts', cartInfo)
             .then(res => {

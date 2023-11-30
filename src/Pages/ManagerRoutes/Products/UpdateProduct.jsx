@@ -4,7 +4,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { authContext } from "../../../Components/AuthProvider/AuthProvider";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
 const image_hosting = '2982c3150ccb99782ca3eb02dde1df4d'
 
@@ -14,6 +14,7 @@ const UpdateProduct = () => {
     const axiosPublic = useAxiosPublic()
     const axiosSecure = useAxiosSecure()
     const [manager,setmanager] = useState({})
+    const navigate = useNavigate()
     const loadedData = useLoaderData()
     console.log(loadedData);
     useEffect(()=>{
@@ -61,6 +62,7 @@ const UpdateProduct = () => {
             .then(res=>{
                 // console.log(res.data);
                if(res?.data?.modifiedCount){
+                navigate('/dashboard/products')
                 Swal.fire({
                     position: "top",
                     icon: "success",
@@ -68,6 +70,9 @@ const UpdateProduct = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+
+               
+
                }
 
 

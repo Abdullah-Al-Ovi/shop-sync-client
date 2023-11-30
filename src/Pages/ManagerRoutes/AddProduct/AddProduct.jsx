@@ -25,7 +25,7 @@ const AddProduct = () => {
         })
     },[axiosSecure,user?.email])
 
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit,reset } = useForm();
 
     const onSubmit = async (data) => {
         // console.log(data);
@@ -69,9 +69,11 @@ const AddProduct = () => {
                 if(res.data?.insertedId){
                     axiosSecure.patch(`/changeLimit/${productInfo?.shopId}`)
                     .then(res=>{
-                        console.log(res.data);
+                        // console.log(res.data);
                         axiosSecure.patch(`/productCountIncrease/${productInfo?.shopId}`)
                         .then((res)=>{
+                            reset()
+                            navigate('/dashboard/products') 
                            console.log(res.data);
                            Swal.fire({
                             position: "top",

@@ -5,21 +5,12 @@ import useShopProducts from '../../../Hooks/useShopProducts';
 const SalesSummary = () => {
 
     const [sales] = useSale()
-    // console.log(sales);
-    // const [...salesProducts] = sales.map(saleProduct=>saleProduct.productName)
 
-
-    // console.log(salesProducts);
-    // const salesProduct = salesProducts.map(sale=>sale.productName)
-    // console.log(salesProduct);
     const [products] = useShopProducts()
-    // const [totalSale, setTotalSale] = useState()
+
     const [totalInvest, setTotalInvest] = useState()
     const [totalProfit, setTotalProfit] = useState()
-    // console.log( totalInvest, totalProfit);
     useEffect(() => {
-        // const sumSale = products?.reduce((sum, item) => sum + item.saleCount, 0)
-        // setTotalSale(sumSale)
         const sumInvest = products?.reduce((sum, item) => sum + item.productionCost, 0)
         setTotalInvest(sumInvest)
         const sumProfits = products?.reduce((sum, item) => sum + (item.saleCount * item.singleProfit), 0)
@@ -76,8 +67,9 @@ const SalesSummary = () => {
                                         {product}
                                     </td>
                                     <td className="p-2">{sale.date}</td>
-                                    <td className="p-2">{}</td>
-                                    
+                                    <td className="p-2">{
+                                        products?.map(item=>item._id ===  )
+                                    }</td>                                  
                                 </tr>
                             ))
                         ))}

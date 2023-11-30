@@ -95,7 +95,7 @@ const Routes = createBrowserRouter([
             },
             {
                 path:'subscription',
-                element:<PaySubs></PaySubs>
+                element:<ManagerPrivateRoute><PaySubs></PaySubs></ManagerPrivateRoute>
             },
             // Admin Routes
             // {
