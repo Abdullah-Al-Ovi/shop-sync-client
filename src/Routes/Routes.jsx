@@ -22,6 +22,8 @@ import ManagerPrivateRoute from "../Components/ManagerPrivateRoute/ManagerPrivat
 import AdManPrivateRoute from "../Components/AdManPrivateRoute/AdManPrivateRoute";
 import ManageShop from "../Pages/AdminRoutes/ManageShop/ManageShop";
 import PaySubs from "../Pages/ManagerRoutes/PaySubs/PaySubs";
+import AdminSalesSummary from "../Pages/AdminRoutes/AdminSalesSummary/AdminSalesSummary";
+import ManageUsers from "../Pages/AdminRoutes/ManageUsers/ManageUsers";
 
 const Routes = createBrowserRouter([
     {
@@ -96,13 +98,21 @@ const Routes = createBrowserRouter([
                 element:<PaySubs></PaySubs>
             },
             // Admin Routes
-            {
-                path:'adminHome',
-                element:<AdminPrivateRoute><AdminHome></AdminHome></AdminPrivateRoute>
-            },
+            // {
+            //     path:'adminHome',
+            //     element:<AdminPrivateRoute><AdminHome></AdminHome></AdminPrivateRoute>
+            // },
             {
                 path:'manageShop',
                 element:<AdminPrivateRoute><ManageShop></ManageShop></AdminPrivateRoute>
+            },
+            {
+                path:'adminSalesSummary',
+                element:<AdminPrivateRoute><AdminSalesSummary></AdminSalesSummary></AdminPrivateRoute>
+            },
+            {
+                path:'manageUsers',
+                element:<AdminPrivateRoute><ManageUsers></ManageUsers></AdminPrivateRoute>
             }
         ]
     }

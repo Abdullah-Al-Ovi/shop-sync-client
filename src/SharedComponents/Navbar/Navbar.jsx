@@ -24,7 +24,7 @@ const Navbar = () => {
             user?.email && isManager && <> <li><NavLink to='/dashboard/managerHome'>Dashboard</NavLink></li></>
         }
         {
-            user?.email && isAdmin && <> <li><NavLink to='/dashboard/adminHome'>Dashboard</NavLink></li></>
+            user?.email && isAdmin && <> <li><NavLink to='/dashboard/manageShop'>Dashboard</NavLink></li></>
         }
         {
             !user?.email && <><li><NavLink to='/sign-up'>Sign up</NavLink></li></>

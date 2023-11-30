@@ -27,22 +27,19 @@ const Drawer = () => {
             <ul className="space-y-3 font-medium">
                 {
                     isAdmin && <>
-                        <li><NavLink to='/dashboard/adminHome' style={({ isActive }) => {
+                        {/* <li><NavLink to='/dashboard/manageShop' style={({ isActive }) => {
                             return { color: isActive ? 'white' : '' }
-                        }}>Admin Home</NavLink></li>
+                        }}>Admin Home</NavLink></li> */}
                         <li><NavLink to='/dashboard/manageShop' style={({ isActive }) => {
-                            return { color: isActive ? 'white' : '' }
+                            return { color: isActive ? 'blue' : '' }
                         }}>Manage Shop</NavLink></li>
-                        <li><NavLink to='/dashboard/manageItems' style={({ isActive }) => {
-                            return { color: isActive ? 'white' : '' }
-                        }}>MANAGE ITEMS</NavLink></li>
-                        <li><NavLink to='/dashboard/manageBookings' style={({ isActive }) => {
-                            return { color: isActive ? 'white' : '' }
-                        }} >MANAGE BOOKINGS</NavLink></li>
+                        <li><NavLink to='/dashboard/adminSalesSummary' style={({ isActive }) => {
+                            return { color: isActive ? 'blue' : '' }
+                        }}>Sales Summary</NavLink></li>
+                        <li><NavLink to='/dashboard/manageUsers' style={({ isActive }) => {
+                            return { color: isActive ? 'blue' : '' }
+                        }} >Manage Users</NavLink></li>
 
-                        <li><NavLink to='/dashboard/allUsers' style={({ isActive }) => {
-                            return { color: isActive ? 'white' : '' }
-                        }}>ALL USERS</NavLink></li>
                     </>
                 }
                 {

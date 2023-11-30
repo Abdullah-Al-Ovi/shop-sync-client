@@ -90,10 +90,6 @@ const ManageShop = () => {
                         <input className="btn" type="submit" value="Send mail" />
                       </form>
                       <div className="modal-action w-full">
-                        <form className="w-full" method="dialog">
-                          {/* <button className="btn">Close</button> */}
-                          
-                        </form>
                       </div>
                     </div>
                   </dialog>
