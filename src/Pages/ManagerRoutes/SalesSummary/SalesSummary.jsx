@@ -67,9 +67,8 @@ const SalesSummary = () => {
                                         {product}
                                     </td>
                                     <td className="p-2">{sale.date}</td>
-                                    <td className="p-2">{
-                                        products?.map(item=>item._id ===  )
-                                    }</td>                                  
+                                    <td className="p-2">{}</td>
+                                    
                                 </tr>
                             ))
                         ))}
