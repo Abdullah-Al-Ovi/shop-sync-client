@@ -15,4 +15,5 @@
   * Used JWT for authorization and protecting API.
   * Created API for CRUD operation on various functionality such as to add,update,borrow and return book.
   * Created two authorization protected routes i.e manager protected route and admin protected route to ensure role wise accessing dashboard and performing task.
-  * Gave authorization to perform sending mail,professional mail and visiting user info,shop info,product info.
+  * Gave authorization to admin to perform sending mail to shop manager,professional mail to normal user who hasn't created any shop yet and visiting user info,shop info,product info.
+  * Made sure the admin might also see his income through the shop when shop management authority pays to increase product limit.
