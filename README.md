@@ -10,3 +10,9 @@
   * He can see all the summary of products and sale.
   * When shop manager ensures a sale,a cashmemo pdf is generated with required information.
 ### Details: 
+  * Use reactjs as frontend technology and nodejs & mongodb as backend technology.
+  * Used firebase for authentication.
+  * Used JWT for authorization and protecting API.
+  * Created API for CRUD operation on various functionality such as to add,update,borrow and return book.
+  * Created two authorization protected routes i.e manager protected route and admin protected route to ensure role wise accessing dashboard and performing task.
+  * Gave authorization to perform sending mail,professional mail and visiting user info,shop info,product info.
