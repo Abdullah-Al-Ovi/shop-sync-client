@@ -9,6 +9,7 @@ import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 // import useIsManager from '../../../Hooks/useIsManager';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { Helmet } from 'react-helmet';
+import useIsBanned from '../../../Hooks/useIsBanned';
 
 const SignIn = () => {
     const { googleSignIn, signInUser } = useContext(authContext)
@@ -17,6 +18,8 @@ const SignIn = () => {
     const navigate = useNavigate()
     const axiosPublic = useAxiosPublic()
     const axiosSecure = useAxiosSecure()
+    // const [isBanned] = useIsBanned()
+    // console.log(isBanned);
     // const [isManager] = useIsManager()
     // console.log(isManager);
 
@@ -30,9 +33,11 @@ const SignIn = () => {
         try {
             await signInUser(email, password);
             const IsManager = await axiosSecure.get(`/users/manager/${email}`)
-            console.log('isManager:', IsManager);
+            const IsBanned = await axiosSecure.get(`/users/banned/${email}`)
+            // console.log('isManager:', IsManager);
+            console.log('isBanned:', IsBanned);
             e.target.reset();
-            navigate(location?.state ? location.state : IsManager?.data ? '/dashboard/managerHome' : '/createStore');
+            navigate(location.state ? location.state : IsManager.data ? IsManager.data && IsBanned ? '/bannedShop' : '/dashboard/managerHome' : '/createStore');
 
             Swal.fire({
                 position: "top",
@@ -63,6 +68,7 @@ const SignIn = () => {
 
             // Wait for the Google sign-in process to complete, then fetch isManager
             const IsManager = await axiosSecure.get(`/users/manager/${userInfo.email}`)
+            const IsBanned = await axiosSecure.get(`/users/banned/${userInfo.email}`)
             axiosPublic.post('/users', userInfo)
                 .then(res => {
                     console.log(res.data);
@@ -78,7 +84,7 @@ const SignIn = () => {
                 timer: 1500
             });
 
-            navigate(location?.state ? location.state : IsManager?.data ? '/dashboard/managerHome' : '/createStore');
+            navigate(location.state ? location.state : IsManager.data ? IsManager.data && !IsBanned ? '/bannedShop' : '/dashboard/managerHome' : '/createStore');
 
         } catch (error) {
             setErr(error.message);

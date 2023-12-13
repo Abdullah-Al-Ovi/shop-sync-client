@@ -1,5 +1,5 @@
 import banner from '../../../assets/inventory-banner.jpg'
-import '../../CommonRoutes/Home/CSS/banner.css'
+// import '../../CommonRoutes/Home/CSS/banner.css'
 
 
 const Banner = () => {

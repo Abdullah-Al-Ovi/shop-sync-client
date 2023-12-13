@@ -57,18 +57,17 @@ const ManageUsers = () => {
                
                 <th className="border-2 p-2">Email</th>
                 <th className="border-2 p-2">Shop</th>
-                <th className="border-2 p-2">user</th>
+          
                 <th className="border-2 p-2">Role</th>
-                <th className="border-2 p-2">Send Promotional Email</th>
+                <th className="border-2 p-2">Send Email</th>
+                
               </tr>
             </thead>
             <tbody>
               {allUsers?.map((user, index) => (
                 <tr key={user?._id} className={`border-b text-center ${index === user?.length - 1 ? '' : 'border-gray-300'}`}>
                   <td className="p-2">{user?.name}</td>
-                  <td className="flex justify-center p-2">
-                    <img className="w-[70px]" src={user?.userLogo} alt="" />
-                  </td>
+                 
                   <td className="p-2">{user?.email}</td>
                   <td className="p-2">{user?.shopName}</td>
                   <td className="p-2">{user?.role}</td>

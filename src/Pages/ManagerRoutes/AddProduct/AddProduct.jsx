@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 
 
+
 const image_hosting = '2982c3150ccb99782ca3eb02dde1df4d'
 
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting}`;
@@ -17,6 +18,7 @@ const AddProduct = () => {
     const axiosPublic = useAxiosPublic()
     const axiosSecure = useAxiosSecure()
     const navigate  = useNavigate()
+   
     const [manager,setmanager] = useState({})
     useEffect(()=>{
         axiosSecure.get(`/users/${user?.email}`)

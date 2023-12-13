@@ -2,10 +2,12 @@ import { FaEnvelope } from "react-icons/fa";
 import useAllShop from "../../../Hooks/useAllShop";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import useAllUsers from "../../../Hooks/useAllUsers";
 
 
 const ManageShop = () => {
     const [allShop] = useAllShop();
+    const [allUsers,refetch] = useAllUsers()
     const axiosSecure = useAxiosSecure();
   
     const handleSendMail = (e, shopId) => {
@@ -45,6 +47,54 @@ const ManageShop = () => {
           }
         });
     };
+
+    const handleBanShop = (email, shopName) => {
+      Swal.fire({
+        title: "Are you sure?",
+        text: `You are about to ban ${shopName}. This action cannot be reverted!`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: `Yes, ban ${shopName}`,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const updatedRole = {
+            restriction: 'banned',
+          };
+    
+          axiosSecure.patch(`/banShop/${email}`, updatedRole)
+            .then((res) => {
+              console.log(res?.data);
+              refetch();
+              if (res?.data?.modifiedCount) {
+                Swal.fire({
+                  title: "Banned!",
+                  text: `${shopName} has been banned`,
+                  icon: "success",
+                });
+              } else {
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "Something went wrong!",
+                  footer: '<a href="#">Why do I have this issue?</a>',
+                });
+              }
+            })
+            .catch((error) => {
+              console.error("Error banning shop:", error);
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                footer: '<a href="#">Why do I have this issue?</a>',
+              });
+            });
+        }
+      });
+    };
+    
   
     return (
       <div>
@@ -59,6 +109,7 @@ const ManageShop = () => {
                 <th className="border-2 p-2">Current Limit</th>
                 <th className="border-2 p-2">Description</th>
                 <th className="border-2 p-2">Send Notice</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -76,6 +127,7 @@ const ManageShop = () => {
                       <FaEnvelope></FaEnvelope>
                     </button>
                   </td>
+                  <td onClick={()=>handleBanShop(shop?.ownerEmail,shop?.shopName)}><i title="Ban Shop" className="fa-solid text-red-600 fa-xmark"></i></td>
   
                   <dialog id={`my_modal_${shop?._id}`} className="modal modal-bottom sm:modal-middle">
                     <div className="modal-box">

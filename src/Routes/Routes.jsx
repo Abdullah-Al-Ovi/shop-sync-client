@@ -24,6 +24,7 @@ import ManageShop from "../Pages/AdminRoutes/ManageShop/ManageShop";
 import PaySubs from "../Pages/ManagerRoutes/PaySubs/PaySubs";
 import AdminSalesSummary from "../Pages/AdminRoutes/AdminSalesSummary/AdminSalesSummary";
 import ManageUsers from "../Pages/AdminRoutes/ManageUsers/ManageUsers";
+import BannedShop from "../Components/BannedShop";
 
 const Routes = createBrowserRouter([
     {
@@ -55,6 +56,9 @@ const Routes = createBrowserRouter([
             {
                 path:'/authorizationError',
                 element:<AuthorizationerrorPage></AuthorizationerrorPage>
+            },{
+                path:'/bannedShop',
+                element:<BannedShop></BannedShop>
             }
             
         ]

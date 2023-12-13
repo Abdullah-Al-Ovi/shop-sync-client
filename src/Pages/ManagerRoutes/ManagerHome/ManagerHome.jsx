@@ -4,12 +4,15 @@ import useShopProducts from "../../../Hooks/useShopProducts";
 import { useEffect } from "react";
 import useSingleShop from "../../../Hooks/useSingleShop";
 import Swal from "sweetalert2";
+import useIsBanned from "../../../Hooks/useIsBanned";
 
 const ManagerHome = () => {
     // const [totalProduct, setTotalProduct] = useState([])
     const [products] = useShopProducts()
     const [shop] = useSingleShop()
     const navigate =  useNavigate()
+    const [isBanned] = useIsBanned()
+    console.log(isBanned);
     console.log(shop);
     useEffect(()=>{
         if(shop?.limit === 1){
