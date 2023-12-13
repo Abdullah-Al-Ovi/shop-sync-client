@@ -78,7 +78,7 @@ const SignIn = () => {
                 timer: 1500
             });
 
-            navigate(location?.state ? location.state : IsManager?.data ? '/dashboard/managerHome' : '/createShop');
+            navigate(location?.state ? location.state : IsManager?.data ? '/dashboard/managerHome' : '/createStore');
 
         } catch (error) {
             setErr(error.message);

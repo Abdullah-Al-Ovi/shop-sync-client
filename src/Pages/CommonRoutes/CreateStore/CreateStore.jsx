@@ -29,7 +29,7 @@ const CreateStore = () => {
 
     }
     console.log(shopInfo);
-    axiosSecure.post('/createShop',shopInfo)
+    axiosSecure.post('p',shopInfo)
     .then(res=>{
         console.log(res.data);
         if(res?.data?.insertedId){
