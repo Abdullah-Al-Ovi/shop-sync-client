@@ -1,4 +1,4 @@
-import { FaMoneyCheck, FaProductHunt, FaSalesforce, FaWallet } from "react-icons/fa";
+import {  FaProductHunt, FaSalesforce, FaWallet } from "react-icons/fa";
 import useAllProducts from "../../../Hooks/useAllProducts";
 import useAllSales from "../../../Hooks/useAllSales";
 

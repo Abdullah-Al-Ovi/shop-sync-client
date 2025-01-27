@@ -3,7 +3,6 @@ import Root from "../Root/Root";
 import Home from "../Pages/CommonRoutes/Home/Home";
 import SignUp from "../Pages/CommonRoutes/SignUp/SignUp";
 import SignIn from "../Pages/CommonRoutes/SignIn/SignIn";
-import WatchDemo from "../Pages/CommonRoutes/WatchDemo/WatchDemo";
 import CreateStore from "../Pages/CommonRoutes/CreateStore/CreateStore";
 import Dashboard from "../Dashboard/Dashboard";
 import ManagerHome from "../Pages/ManagerRoutes/ManagerHome/ManagerHome";
@@ -14,7 +13,6 @@ import UpdateProduct from "../Pages/ManagerRoutes/Products/UpdateProduct";
 import CheckOut from "../Pages/ManagerRoutes/CheckOut/CheckOut";
 import SalesSummary from "../Pages/ManagerRoutes/SalesSummary/SalesSummary";
 import PrivateRoute from "../Components/PrivateRoute/PrivateRoute";
-import AdminHome from "../Pages/AdminRoutes/AdminHome/AdminHome";
 import AdminPrivateRoute from "../Components/AdminPrivateRoute/AdminPrivateRoute";
 import AuthorizationerrorPage from "../Pages/AuthorizationErrorPage/AuthorizationerrorPage";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
@@ -66,7 +64,7 @@ const Routes = createBrowserRouter([
     },
     {
         path:'dashboard',
-        element:<AdManPrivateRoute><Dashboard></Dashboard></AdManPrivateRoute>,
+        element:<Dashboard></Dashboard>,
         children:[
             {
                 path:'managerHome',
@@ -87,7 +85,7 @@ const Routes = createBrowserRouter([
             {
                 path:'updateProduct/:id',
                 element:<ManagerPrivateRoute><UpdateProduct></UpdateProduct></ManagerPrivateRoute>,
-                loader:({params})=>fetch(`https://shopsync-server.vercel.app/products/update/${params.id}`)
+                loader:({params})=>fetch(`http://localhost:5001/products/update/${params.id}`)
             },
             {
                 path:'checkOut',

@@ -1,8 +1,8 @@
 import { createUserWithEmailAndPassword, onAuthStateChanged, updateProfile,GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { createContext, useEffect, useState } from "react";
-
 import axios from "axios";
 import { auth } from "../../Firebase/firebase";
+import { createContext, useEffect, useState } from "react";
+
 
 export const authContext = createContext(null)
 const AuthProvider = ({children}) => {
@@ -41,7 +41,7 @@ const AuthProvider = ({children}) => {
                   email :  currentUser.email
               }
               
-              axios.post('https://shopsync-server.vercel.app/jwt',user)
+              axios.post('http://localhost:5001/jwt',user)
               .then(res=>{
                 localStorage.setItem('access-token',res.data.token)
               })

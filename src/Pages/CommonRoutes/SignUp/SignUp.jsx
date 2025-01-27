@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form"
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import Swal from "sweetalert2";
 
 import { authContext } from "../../../Components/AuthProvider/AuthProvider";
@@ -10,7 +9,7 @@ import { Helmet } from "react-helmet";
 
 
 const SignUp = () => {
-    const { createUser, updateUser} = useContext(authContext)
+    const { createUser, updateUser } = useContext(authContext)
     const [err, setErr] = useState('')
     const navigate = useNavigate()
     const axiosPublic = useAxiosPublic()
@@ -25,46 +24,46 @@ const SignUp = () => {
         console.log(data)
         const userInfo = {
             name: data.name,
-            email : data.email,
-            photo : data.link 
+            email: data.email,
+            photo: data.link
         }
         console.log(userInfo);
-        
-        createUser(data.email,data.password)
-        .then(()=>{
-           
-           updateUser(data.name,data.link)
-            .then(()=>{
-                
-               
-                reset()
-                axiosPublic.post('/users',userInfo)
-                .then(res=>{
-                    console.log(res.data);
-                    if(res.data.insertedId){
-                        Swal.fire({
-                            position: "top",
-                            icon: "success",
-                            title: "Sign up Successfully!",
-                            showConfirmButton: false,
-                            timer: 1500
-                          });
-                          navigate('/createStore')
-                    }
-                })
+
+        createUser(data.email, data.password)
+            .then(() => {
+
+                updateUser(data.name, data.link)
+                    .then(() => {
+
+
+                        reset()
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                console.log(res.data);
+                                if (res.data.insertedId) {
+                                    Swal.fire({
+                                        position: "top",
+                                        icon: "success",
+                                        title: "Sign up Successfully!",
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    navigate('/createStore')
+                                }
+                            })
+
+                    })
+                    .catch(() => {
+
+                    })
+
+
 
             })
-            .catch(()=>{
-                
+            .catch(error => {
+                setErr(error.message)
             })
-            
-            
-           
-        })
-        .catch(error=>{
-            setErr(error.message)
-        })
-        
+
 
 
     }
@@ -90,8 +89,8 @@ const SignUp = () => {
                         </span>
 
                         <div className="flex flex-col w-full">
-                        <input type="text" {...register("name",{required:true})} className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Username" />
-                        {errors.name && <p className="text-xs text-red-500">Name is required</p>}
+                            <input type="text" {...register("name", { required: true })} className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Username" />
+                            {errors.name && <p className="text-xs text-red-500">Name is required</p>}
                         </div>
 
                     </div>
@@ -101,7 +100,7 @@ const SignUp = () => {
                             <i className="fa-regular fa-image"></i>
                         </span>
 
-                        <input type="text" {...register("link")}  className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Photo URL" />
+                        <input type="text" {...register("link")} className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Photo URL" />
                     </div>
 
                     <div className="relative flex items-center mt-6">
@@ -111,10 +110,10 @@ const SignUp = () => {
                             </svg>
                         </span>
 
-                       <div className="flex flex-col w-full">
-                       <input type="email" {...register("email",{required:true})}  className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address"  />
-                        {errors.email && <p className="text-xs text-red-500">Email is required</p>}
-                       </div>
+                        <div className="flex flex-col w-full">
+                            <input type="email" {...register("email", { required: true })} className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address" />
+                            {errors.email && <p className="text-xs text-red-500">Email is required</p>}
+                        </div>
 
                     </div>
 
@@ -126,11 +125,11 @@ const SignUp = () => {
                         </span>
 
                         <div className="flex flex-col w-full">
-                        <input type="password" {...register("password", { required: true,minLength:6,pattern:/^(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/ })} className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Password" />
-                        {errors.password?.type ==='required' && <p className="text-xs text-red-500">Password is required</p>}
-                        {errors.password?.type ==='minLength' && <p className="text-xs text-red-500">Password must be at least 6 characters long</p>}
-                        {errors.password?.type ==='pattern' && <p className="text-xs text-red-500">Password must contain at least one capital letter and one special character(@$!%*?&)</p>}
-                        
+                            <input type="password" {...register("password", { required: true, minLength: 6, pattern: /^(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/ })} className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Password" />
+                            {errors.password?.type === 'required' && <p className="text-xs text-red-500">Password is required</p>}
+                            {errors.password?.type === 'minLength' && <p className="text-xs text-red-500">Password must be at least 6 characters long</p>}
+                            {errors.password?.type === 'pattern' && <p className="text-xs text-red-500">Password must contain at least one capital letter and one special character(@$!%*?&)</p>}
+
                         </div>
 
                     </div>

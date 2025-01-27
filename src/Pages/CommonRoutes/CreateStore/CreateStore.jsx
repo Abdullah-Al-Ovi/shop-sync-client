@@ -1,4 +1,3 @@
-
 import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
@@ -7,62 +6,54 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
-
 const CreateStore = () => {
+  const { user } = useContext(authContext);
+  const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
-  const {user} = useContext(authContext)
-  const axiosSecure = useAxiosSecure()
-  const navigate = useNavigate()
-
-  const { register, handleSubmit,reset } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
-    // console.log(data);
     const shopInfo = {
-        shopName : data.shopName,
-        shopInfo: data?.shopInfo,
-        shopLocation: data?.shopLocation,
-        shopLogo: data?.shopLogo,
-        ownerEmail : user?.email,
-        ownerName : user?.displayName,
-        productsCount : 0
-
-    }
+      shopName: data.shopName,
+      shopInfo: data?.shopInfo,
+      shopLocation: data?.shopLocation,
+      shopLogo: data?.shopLogo,
+      ownerEmail: user?.email,
+      ownerName: user?.displayName,
+      productsCount: 0,
+    };
     console.log(shopInfo);
-    axiosSecure.post('p',shopInfo)
-    .then(res=>{
-        console.log(res.data);
-        if(res?.data?.insertedId){
-            const updatedUserInfo = {
-                shopName:shopInfo.shopName,
-                shopLogo:shopInfo.shopLogo,
-                shopId: res?.data?.insertedId,
-            }
-            axiosSecure.patch(`/users/${user?.email}`,updatedUserInfo)
-            .then(res=>{
-                console.log(res.data);
-                navigate('/dashboard/managerHome')
-                reset()
-                Swal.fire({
-                  position: "top",
-                  icon: "success",
-                  title: "Shop Created successful",
-                  showConfirmButton: false,
-                  timer: 1500
-              });
-            })
-        }
-        else{
+    axiosSecure.post("/createShop", shopInfo).then((res) => {
+      console.log(res?.data);
+      if (res?.data?.insertedId) {
+        const updatedUserInfo = {
+          shopName: shopInfo.shopName,
+          shopLogo: shopInfo.shopLogo,
+          shopId: res?.data?.insertedId,
+        };
+        axiosSecure.patch(`/users/${user?.email}`, updatedUserInfo).then((res) => {
+          console.log(res.data);
+          navigate("/dashboard/managerHome");
+          reset();
           Swal.fire({
             position: "top",
-            icon: "error",
-            title: "You have Already Created a Shop",
+            icon: "success",
+            title: "Shop Created successfully",
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
+          });
         });
-        }
-    })
-
+      } else {
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title: "You have Already Created a Shop",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
   };
 
   return (
@@ -79,8 +70,6 @@ const CreateStore = () => {
         <div>
           <div className="mt-10">
             <form onSubmit={handleSubmit(onSubmit)}>
-
-
               <div className="flex flex-col md:flex-col lg:flex-row gap-6">
                 <div className="form-control">
                   <label>Shop Name</label>
@@ -88,8 +77,8 @@ const CreateStore = () => {
                     type="text"
                     {...register("shopName")}
                     placeholder="Enter your shop name"
-                    className="input mt-2  w-full md:w-[390px] lg:w-[390px]"
-                  />{" "}
+                    className="input mt-2 w-full md:w-[390px] lg:w-[390px]"
+                  />
                 </div>
 
                 <div className="form-control">
@@ -98,24 +87,19 @@ const CreateStore = () => {
                     type="text"
                     {...register("shopLogo")}
                     placeholder="Enter your shop logo"
-                    
-                    className="input mt-2  w-full md:w-[390px] lg:w-[390px]"
-                  />{" "}
+                    className="input mt-2 w-full md:w-[390px] lg:w-[390px]"
+                  />
                 </div>
               </div>
-
 
               <div className="flex flex-col md:flex-col lg:flex-row gap-6 mt-6">
                 <div className="form-control">
                   <label>Shop Info</label>
-                  {/* <input
-                    type="text"
+                  <textarea
                     {...register("shopInfo")}
-                    placeholder="Shop info"
-                   
-                    className="input mt-2  w-full md:w-[390px] lg:w-[390px]"
-                  /> */}
-                    <textarea  {...register("shopInfo")} placeholder="Shop Info" className="textarea textarea-bordered textarea-lg w-full max-w-xs mt-2" ></textarea>
+                    placeholder="Shop Info"
+                    className="textarea textarea-bordered textarea-lg w-full md:w-[390px] lg:w-[390px] mt-2"
+                  ></textarea>
                 </div>
 
                 <div className="form-control">
@@ -123,16 +107,14 @@ const CreateStore = () => {
                   <input
                     type="text"
                     {...register("shopLocation")}
-                    placeholder="shopLocation"
-                    
-                    className="input mt-2  w-full md:w-[390px] lg:w-[390px]"
-                  />{" "}
+                    placeholder="Enter your shop location"
+                    className="input mt-2 w-full md:w-[390px] lg:w-[390px]"
+                  />
                 </div>
               </div>
 
               <div className="flex flex-col md:flex-col lg:flex-row gap-6 mt-6">
-
-              <div className="form-control">
+                <div className="form-control">
                   <label>Your Name</label>
                   <input
                     type="text"
@@ -140,7 +122,7 @@ const CreateStore = () => {
                     placeholder="Your name"
                     defaultValue={user?.displayName}
                     readOnly
-                    className="input mt-2  w-full md:w-[390px] lg:w-[390px]"
+                    className="input mt-2 w-full md:w-[390px] lg:w-[390px]"
                   />
                 </div>
 
@@ -152,15 +134,16 @@ const CreateStore = () => {
                     placeholder="Your email"
                     defaultValue={user?.email}
                     readOnly
-                    className="input mt-2  w-full md:w-[390px] lg:w-[390px]"
-                  />{" "}
+                    className="input mt-2 w-full md:w-[390px] lg:w-[390px]"
+                  />
                 </div>
-
               </div>
 
-              
-              <input className="my-7 w-full p-2 text-white font-bold rounded-md bg-cyan-500" type="submit" value="Create Store" />
-
+              <input
+                className="my-7 w-full p-2 text-white font-bold rounded-md bg-cyan-500"
+                type="submit"
+                value="Create Store"
+              />
             </form>
           </div>
         </div>

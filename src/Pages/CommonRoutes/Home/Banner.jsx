@@ -1,5 +1,5 @@
 import banner from '../../../assets/inventory-banner.jpg'
-// import '../../CommonRoutes/Home/CSS/banner.css'
+import '../../CommonRoutes/Home/CSS/banner.css'
 
 
 const Banner = () => {
@@ -12,7 +12,7 @@ const Banner = () => {
           </nav>
   
           <div className="flex flex-col items-center py-6 lg:h-[36rem] lg:flex-row">
-              <div className="lg:w-1/2">
+              {/* <div className="lg:w-1/2">
                   <h2 className="text-3xl font-semibold text-gray-100 lg:text-4xl">Effortless</h2>
   
                   <h3 className="mt-2 text-2xl font-semibold text-gray-100">
@@ -22,7 +22,7 @@ const Banner = () => {
                   <p className="mt-4 text-gray-100">Explore the Future of Inventory Control with Shop Sync. From Product Management to Sales Insights, We have Got You Covered! 
                  </p>
   
-              </div>
+              </div> */}
   
               <div className="flex mt-8 lg:w-1/2 lg:justify-end lg:mt-0">
                   <div className="w-full max-w-md bg-white rounded-lg ">

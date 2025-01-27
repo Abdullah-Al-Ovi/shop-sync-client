@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Faq from './FAQ/faq';
 import DownloadApp from './DownloadApp/DownloadApp';
 import ReviewSection from './ReviewSection/ReviewSection';
@@ -7,11 +7,11 @@ import Banner from './banner';
 const Home = () => {
     return (
         <div>
-            <Banner></Banner>
+            {/* <Banner></Banner> */}
             <OfferCountdown></OfferCountdown>
             <Faq></Faq>
             <ReviewSection></ReviewSection>
-            <DownloadApp></DownloadApp>
+            {/* <DownloadApp></DownloadApp> */}
         </div>
     );
 };
