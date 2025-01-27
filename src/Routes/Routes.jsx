@@ -85,7 +85,7 @@ const Routes = createBrowserRouter([
             {
                 path:'updateProduct/:id',
                 element:<ManagerPrivateRoute><UpdateProduct></UpdateProduct></ManagerPrivateRoute>,
-                loader:({params})=>fetch(`http://localhost:5001/products/update/${params.id}`)
+                loader:({params})=>fetch(`https://shopsync-server.vercel.app/products/update/${params.id}`)
             },
             {
                 path:'checkOut',

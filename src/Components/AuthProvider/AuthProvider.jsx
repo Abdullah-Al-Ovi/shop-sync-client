@@ -41,7 +41,7 @@ const AuthProvider = ({children}) => {
                   email :  currentUser.email
               }
               
-              axios.post('http://localhost:5001/jwt',user)
+              axios.post('https://shopsync-server.vercel.app/jwt',user)
               .then(res=>{
                 localStorage.setItem('access-token',res.data.token)
               })
